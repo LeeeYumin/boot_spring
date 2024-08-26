@@ -6,9 +6,9 @@ class Cat extends Animal {
 	void sound() {
 		System.out.println("고양이는 냐옹");
 	}
-	
+
 	void parentSound() {
 		super.sound();
 	}
-	
+
 }
