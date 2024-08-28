@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<span sec:authorize="isAnonymous()">Signin First...<a href="/signin">Sign in</a></span>
+<span sec:authorize="isAnonymous()">먼저 회원가입을 해주세요 <a href="/signin">▶로그인</a></span>
 <span sec:authorize="isAuthenticated()">Welcome...<span th:text="${#authentication.name}"></span>
 <span th:text="${#authentication.authorities}"></span>
 <a href="/signout">Sign out</a>
