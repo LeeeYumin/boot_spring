@@ -4,10 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequestMapping("/question")
@@ -41,4 +46,27 @@ public class QuestionController {
 		return "question_detail";
 
 	}
+	
+	//질문등록하기 버튼
+    @GetMapping("/create")
+    public String questionCreate(QuestionForm questionForm) {
+        return "question_form";
+    }
+    
+    //질문 입력한 내용 받아주기 + 검증
+    @PostMapping("/create")
+    public String questionCreate(@Valid QuestionForm questionForm, // 겁토는 validation 이용함
+    							BindingResult bindingResult) { //검증 결과를 받아줌
+    		
+    							//@RequestParam(value="subject") String subject,
+    							//@RequestParam(value="content") String content) {
+    	
+    	if(bindingResult.hasErrors()) {
+    		return "question_form";
+    	}
+    	this.questionService.create(questionForm.getSubject(), questionForm.getContent()); //입력받은 값들을 서비스로
+    	return "redirect:/question/list";
+    }
+    
+    
 }

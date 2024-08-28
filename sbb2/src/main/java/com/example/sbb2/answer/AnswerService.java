@@ -15,7 +15,7 @@ public class AnswerService {
 	private final AnswerRepo answerRepo; // 객체 생성
 	
 	public void create(Question question, String content) {
-		Answer answer = new Answer();
+		Answer answer = new Answer(); // 객체 생성
 		answer.setContent(content);
 		answer.setCreateDate(LocalDateTime.now());
 		answer.setQuestion(question);

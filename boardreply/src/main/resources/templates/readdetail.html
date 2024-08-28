@@ -12,5 +12,19 @@
 	/ [[${board.content}]]
 	/ [[${board.date}]]
 	
+<form th:action="@{|/reply/create/${board.id}|}" method="post">
+	<input type="text" name="content">
+	<input type="submit" value="등록">
+</form>
+
+
+<h5 th:text="|${#lists.size(board.replys)}개의 답변이 있습니다.|"></h5>
+<div>
+    <ul>
+        <li th:each="reply : ${board.replys}" th:text="${reply.content}"></li>
+    </ul>
+</div>
+
+	
 </body>
 </html>

@@ -29,6 +29,7 @@ public class Board {
 	private LocalDateTime date;
 	
 	@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-	private List<Reply> replyList;
+	private List<Reply> replys; //${board.replys} 여기랑 맞춤
+
 
 }
