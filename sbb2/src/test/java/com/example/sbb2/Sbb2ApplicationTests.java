@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.sbb2.question.Question;
 import com.example.sbb2.question.QuestionRepo;
+import com.example.sbb2.question.QuestionService;
 
 @SpringBootTest
 class Sbb2ApplicationTests {
@@ -19,8 +20,20 @@ class Sbb2ApplicationTests {
 	@Autowired
 	private QuestionRepo questionRepo;
 	
+	@Autowired
+	private QuestionService questionService;
 	
 	@Test
+	void testJpa2() {
+		for (int i = 1; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용없음";
+            this.questionService.create(subject, content);
+        }
+    }
+	
+	
+	//@Test
     void testJpa() {
         Question q = this.questionRepo.findBySubjectAndContent(
                 "왜 주말은 빨리 지나갈까요?", "생각해보니 2일 뿐이라서 빨리 지나갈 수 밖에 없었다...");

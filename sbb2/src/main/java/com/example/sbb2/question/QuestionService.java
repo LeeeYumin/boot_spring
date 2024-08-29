@@ -1,12 +1,18 @@
 package com.example.sbb2.question;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import groovyjarjarantlr4.v4.parse.ANTLRParser.throwsSpec_return;
+import com.example.sbb2.user.SiteUser;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -37,11 +43,20 @@ public class QuestionService {
 	}
 	
 	//질문 작성 서비스로 넘겨받기
-    public void create(String subject, String content) {
+    public void create(String subject, String content, SiteUser author) {
         Question q = new Question();
         q.setSubject(subject);
         q.setContent(content);
         q.setCreateDate(LocalDateTime.now());
+        q.setAuthor(author);
         this.questionRepo.save(q);
+    }
+    
+    //페이징 기능
+    public Page<Question> getList(int page) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate")); //날짜로 역순 정렬
+    	Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts)); //페이지 당 게시글 수
+    	return this.questionRepo.findAll(pageable);
     }
 }

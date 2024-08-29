@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="boardreply/src/main/java"/>
+	<classpathentry kind="src" path="boardreply/src/test/java"/>
+	<classpathentry kind="src" path="cartitem/src/main/java"/>
+	<classpathentry kind="src" path="cartitem/src/test/java"/>
+	<classpathentry kind="src" path="hw0826/src"/>
+	<classpathentry excluding="hw0827/" kind="src" path="hw0827/src"/>
+	<classpathentry kind="src" path="hw0827/src/hw0827"/>
+	<classpathentry kind="src" path="noticeexam/src/main/java"/>
+	<classpathentry kind="src" path="noticeexam/src/test/java"/>
+	<classpathentry kind="src" path="sbb2/src/main/java"/>
+	<classpathentry kind="src" path="sbb2/src/test/java"/>
+	<classpathentry kind="src" path="schoolexam/src/main/java"/>
+	<classpathentry kind="src" path="schoolexam/src/test/java"/>
+	<classpathentry kind="src" path="securityexam/src/main/java"/>
+	<classpathentry kind="src" path="securityexam/src/test/java"/>
+	<classpathentry kind="lib" path="boardreply/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="cartitem/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="noticeexam/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="sbb2/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="schoolexam/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="securityexam/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="hw0826/bin"/>
+</classpath>
