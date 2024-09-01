@@ -45,4 +45,7 @@ public class Question {
 	
 	@ManyToMany
     Set<SiteUser> voter;
+	
+	@ManyToMany //비추
+    Set<SiteUser> notvoter;
 }

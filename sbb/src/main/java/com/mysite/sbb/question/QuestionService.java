@@ -79,6 +79,7 @@ public class QuestionService {
 		//return this.questionRepository.findAll(spec, pageable);
 	}
 	
+	//글수정
     public void modify(Question question, String subject, String content) {
         question.setSubject(subject);
         question.setContent(content);
@@ -87,12 +88,20 @@ public class QuestionService {
         // create 도 update 도 둘다 save를 사용한다. 문제 발생 주의 !!
     }
     
+    //글삭제
     public void delete(Question question) {
         this.questionRepository.delete(question);
     }
     
+    //추천
     public void vote(Question question, SiteUser siteUser) {
         question.getVoter().add(siteUser);
+        this.questionRepository.save(question);
+    }
+    
+  //비추천
+    public void notvote(Question question, SiteUser siteUser) {
+        question.getNotvoter().add(siteUser);
         this.questionRepository.save(question);
     }
 }

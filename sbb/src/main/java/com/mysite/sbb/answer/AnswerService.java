@@ -52,4 +52,10 @@ public class AnswerService {
         answer.getVoter().add(siteUser);
         this.answerRepository.save(answer);
     }
+    
+    //비추기능
+    public void notvote(Answer answer, SiteUser siteUser) { 
+        answer.getNotvoter().add(siteUser);
+        this.answerRepository.save(answer);
+    }
 }

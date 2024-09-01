@@ -30,6 +30,16 @@ public class QuestionController {
 	private final QuestionService questionService;
 	private final UserService userService;
 
+	//비추기능
+	@PreAuthorize("isAuthenticated()") 
+    @GetMapping("/notvote/{id}")
+    public String questionnotVote(Principal principal, @PathVariable("id") Integer id) {
+        Question question = this.questionService.getQuestion(id);
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        this.questionService.notvote(question, siteUser);
+        return String.format("redirect:/question/detail/%s", id);
+    }
+	
 	//추천기능
 	@PreAuthorize("isAuthenticated()") 
     @GetMapping("/vote/{id}")
@@ -40,6 +50,17 @@ public class QuestionController {
         return String.format("redirect:/question/detail/%s", id);
     }
 	
+	// 글삭제
+	@PreAuthorize("isAuthenticated()")
+    @GetMapping("/delete/{id}")
+    public String questionDelete(Principal principal, @PathVariable("id") Integer id) {
+        Question question = this.questionService.getQuestion(id);
+        if (!question.getAuthor().getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
+        }
+        this.questionService.delete(question);
+        return "redirect:/";
+    }
 	
 	
 //	@GetMapping("/list") // 페이징 기능 없음

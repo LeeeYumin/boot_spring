@@ -98,5 +98,16 @@ public class AnswerController {
         					answer.getQuestion().getId(), answer.getId());
     }
     
+  //비추천기능
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/notvote/{id}")
+    public String answernotVote(Principal principal, @PathVariable("id") Integer id) {
+        Answer answer = this.answerService.getAnswer(id);
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        this.answerService.notvote(answer, siteUser);
+        return String.format("redirect:/question/detail/%s#anwser_%s",
+        					answer.getQuestion().getId(), answer.getId());
+    }
+    
     
 }
